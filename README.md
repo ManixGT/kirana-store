@@ -1,152 +1,232 @@
 
----
-
-### ✅ Fixed & Final `README.md`
-
 ```markdown
-# 🛒 Kirana Shop - Spring Boot Mini Project
+# 🛒 Kirana Store - Spring Boot Backend
 
-A small but complete **Spring Boot application** simulating a simple **Kirana (Grocery) Shop**, built for learning **OOP, Spring Boot architecture, and SQL relationships** in a clean and progressive way.
+A complete grocery store management system built with Spring Boot and PostgreSQL, designed to help Java developers grow from basic to intermediate level.
 
 ---
 
 ## ✅ Features
 
-- Manage **Products**, **Categories**, and **Suppliers**
+### 🔸 Core Features
+- Manage **Products** with categories and suppliers
 - Manage **Customers** and **Employees**
-- Create **Orders** with multiple products (Many-to-Many)
-- Assign **Employees** to Orders
-- Calculate **total order price** automatically
-- View all orders with customer and product details
-- Product **active/inactive** status for soft deletes
+- Create **Orders** with multiple products
+- View **Orders** with calculated totals
+
+### 🔹 Advanced Features
+- **Suppliers** (One-to-Many relationship)
+- **Employees** (Track who created orders)
+- **Categories** (Product categorization)
+- **Soft-delete** logic with active/inactive status
+- **Total Order Price** computed dynamically
 
 ---
 
-## 🎓 What You’ll Learn
+## 🎓 Learning Objectives
 
-This project is designed to help you understand:
-
-- ✅ Object-Oriented Programming (OOP) in real applications
-- ✅ Entity relationships: `@OneToMany`, `@ManyToOne`, `@ManyToMany`
-- ✅ Layered Architecture: Controller → Service → Repository
-- ✅ Using DTOs to manage data flow
-- ✅ Computed fields (e.g. total price)
-- ✅ Business rules and validations
-- ✅ How to scale a clean Spring Boot project
-
----
-
-## 🧱 Tech Stack
-
-| Layer         | Technology            |
-|---------------|------------------------|
-| Backend       | Java 17, Spring Boot   |
-| Persistence   | Spring Data JPA        |
-| Database      | H2 (in-memory)         |
-| Build Tool    | Maven                  |
-| Dev Tools     | Spring Boot DevTools   |
-| Helpers       | Lombok, ModelMapper    |
+| Concept | Covered In |
+|---------|------------|
+| OOP & Clean Architecture | Entities, DTOs, Services |
+| SQL Relationships | One-to-Many, Many-to-Many |
+| Spring Boot Layers | Controller → Service → Repository |
+| DTO Mapping | Request/Response patterns |
+| Business Logic | Validation, computed fields |
+| Real-World Flow | Employees, Suppliers, Orders |
 
 ---
 
-## ⚙️ Project Structure
+## 🛠️ Tech Stack
+
+- **Java 17** + **Spring Boot 3.x**
+- **PostgreSQL** Database
+- **Spring Data JPA** (Hibernate)
+- **Maven** Build Tool
+- **Lombok** for boilerplate reduction
+- **ModelMapper** for DTO mapping
+
+---
+
+## 🗂️ Project Structure
 
 ```
-
-kirana-shop/
-├── controller/         # REST API Controllers
-├── service/            # Business Logic
-├── repository/         # Data Access Layer
-├── model/              # JPA Entities
-├── dto/                # Request/Response DTOs
-├── KiranaShopApplication.java
-└── application.properties
-
-````
+kiranaStore/
+├── src/main/java/com/kiranastore/
+│   ├── controller/     # REST APIs
+│   ├── service/        # Business logic
+│   ├── repository/     # Data access
+│   ├── entity/         # JPA entities
+│   ├── dto/           # Data Transfer Objects
+│   └── config/        # Configuration
+├── src/main/resources/
+│   └── application.properties
+└── pom.xml
+```
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Quick Start
 
 ### Prerequisites
-
-- Java 17+
+- Java 17 or higher
+- PostgreSQL database
 - Maven
 
-### Run the Application
+### Installation
 
+1. **Clone the repository**
 ```bash
-git clone https://github.com/your-username/kirana-shop.git
-cd kirana-shop
-mvn spring-boot:run
-````
-
-### Access H2 Console
-
+git clone https://github.com/ManixGT/kirana-store.git
+cd kiranaStore
 ```
-http://localhost:8080/h2-console
-JDBC URL: jdbc:h2:mem:testdb
+
+2. **Database Setup**
+```sql
+CREATE DATABASE kirana;
+```
+
+3. **Configure application.properties**
+```properties
+spring.datasource.url=jdbc:postgresql://localhost:5432/kirana
+spring.datasource.username=postgres
+spring.datasource.password=your_password
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+```
+
+4. **Run the application**
+```bash
+mvn spring-boot:run
 ```
 
 ---
 
-## 📬 API Endpoints (Examples)
+## 📡 API Endpoints
 
-### Order APIs
+### Orders
+- `GET /api/orders` - Get all orders
+- `POST /api/orders` - Create new order
+- `GET /api/orders/{id}` - Get order by ID
 
-* `GET /orders` — List all orders
-* `POST /orders` — Create new order
+### Products
+- `GET /api/products` - List all products
+- `POST /api/products` - Create product
+- `PUT /api/products/{id}` - Update product
 
+### Customers & Employees
+- `GET /api/customers` - List customers
+- `POST /api/customers` - Create customer
+- `GET /api/employees` - List employees
+
+---
+
+## 🗄️ Entity Relationships
+
+```
+Customer ---< Order >--- Product
+         \             /
+        Employee     Category
+                         |
+                     Supplier
+```
+
+---
+
+## 💡 Example Usage
+
+### Create Order
 ```json
+POST /api/orders
 {
   "customerId": 1,
-  "employeeId": 2,
-  "productIds": [1, 2, 3]
+  "employeeId": 1,
+  "items": [
+    {
+      "productId": 1,
+      "quantity": 2
+    },
+    {
+      "productId": 3,
+      "quantity": 1
+    }
+  ]
 }
 ```
 
-### Product APIs
-
-* `POST /products`
-* `GET /products`
-
-### Customer & Employee APIs
-
-* `POST /customers`
-* `POST /employees`
-* `GET /customers`
-* `GET /employees`
-
----
-
-## 🔄 Future Improvements
-
-* ✅ Add authentication (Spring Security)
-* ✅ Add pagination and search
-* ✅ Export orders/invoices (CSV or PDF)
-* ✅ Inventory management
-* ✅ Unit & integration tests
+### Create Product
+```json
+POST /api/products
+{
+  "name": "Basmati Rice",
+  "price": 80.00,
+  "categoryId": 1,
+  "supplierId": 1
+}
+```
 
 ---
 
-## 🙌 Aimed Audience
+## 🔧 Configuration
 
-This project is ideal for:
+### application.properties
+```properties
+spring.application.name=kiranaStore
+server.port=8080
 
-* Java beginners learning **Spring Boot**
-* Backend developers improving **OOP + SQL relationship skills**
-* Interview prep and portfolio building
+# Database
+spring.datasource.url=jdbc:postgresql://localhost:5432/kirana
+spring.datasource.username=postgres
+spring.datasource.password=your_password
+
+# JPA
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+```
+
+---
+
+## 🚀 Future Enhancements
+
+- [ ] Spring Security with JWT
+- [ ] Inventory Management
+- [ ] Reporting & Analytics
+- [ ] PDF Invoice Generation
+- [ ] Docker Configuration
+- [ ] Unit & Integration Tests
+
+---
+
+## 👨‍💻 Author
+
+**ManixGT** - [GitHub Profile](https://github.com/ManixGT)
 
 ---
 
 ## 📄 License
 
-This project is open-source and free to use under the [MIT License](LICENSE).
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+```
 
----
+## 🔧 Key Fixes Made:
 
-## ✍️ Author
+1. **✅ Updated repository URL** to your actual GitHub: `https://github.com/ManixGT/kirana-store.git`
+2. **✅ Fixed tech stack** - Changed from H2 to **PostgreSQL** (what you're actually using)
+3. **✅ Corrected project structure** to match Spring Boot conventions
+4. **✅ Added proper configuration** section with your actual `application.properties`
+5. **✅ Fixed API endpoints** to use `/api/` prefix
+6. **✅ Updated entity relationships** to match your actual design
+7. **✅ Added realistic example requests**
+8. **✅ Removed broken formatting** and markdown errors
 
-**ManixGt** — Customize it, extend it, and learn from it!
+## 🎯 To Use This README:
 
----
+1. **Save it as `README.md`** in your project root
+2. **Update the password** in database configuration
+3. **Commit and push** to GitHub:
+```bash
+git add README.md
+git commit -m "docs: add proper README.md"
+git push origin main
+```
