@@ -1,3 +1,4 @@
+
 ---
 
 ### 📄 `README.md`
@@ -145,5 +146,7 @@ This project is open-source and free to use under the [MIT License](LICENSE).
 
 ## ✍️ Author
 
-**ManixGt!**
-``
+**ManixGt!** Customize it, extend it, learn from it.
+```
+---
+```
