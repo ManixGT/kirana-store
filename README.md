@@ -49,21 +49,33 @@ A complete grocery store management system built with Spring Boot and PostgreSQL
 ---
 ## 🗂️ Project Structure
 
-```
+**Source Code:**
+- `src/main/java/com/kiranastore/controller/` - REST APIs
+- `src/main/java/com/kiranastore/service/` - Business logic
+- `src/main/java/com/kiranastore/repository/` - Data access
+- `src/main/java/com/kiranastore/entity/` - JPA entities
+- `src/main/java/com/kiranastore/dto/` - Data Transfer Objects
+- `src/main/java/com/kiranastore/config/` - Configuration
+
+**Resources:**
+- `src/main/resources/application.properties` - App configuration
+- `pom.xml` - Maven dependencies
+
+
 kiranaStore/
 ├── src/main/java/com/kiranastore/
-│   ├── controller/     # REST APIs
-│   ├── service/        # Business logic
-│   ├── repository/     # Data access
-│   ├── entity/         # JPA entities
-│   ├── dto/           # Data Transfer Objects
-│   └── config/        # Configuration
+│ ├── controller/ # REST APIs
+│ ├── service/ # Business logic
+│ ├── repository/ # Data access
+│ ├── entity/ # JPA entities
+│ ├── dto/ # Data Transfer Objects
+│ └── config/ # Configuration
 ├── src/main/resources/
-│   └── application.properties
+│ ├── application.properties
+│ └── data.sql # Sample data (optional)
 └── pom.xml
 ```
----
----
+
 ## 🚀 Quick Start
 
 ### Prerequisites
