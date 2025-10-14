@@ -46,7 +46,7 @@ A complete grocery store management system built with Spring Boot and PostgreSQL
 - **ModelMapper** for DTO mapping
 
 ---
-
+---
 ## 🗂️ Project Structure
 
 ```
@@ -62,9 +62,8 @@ kiranaStore/
 │   └── application.properties
 └── pom.xml
 ```
-
 ---
-
+---
 ## 🚀 Quick Start
 
 ### Prerequisites
