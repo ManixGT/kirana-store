@@ -1,7 +1,7 @@
 
 ---
 
-### 📄 `README.md`
+### ✅ Fixed & Final `README.md`
 
 ```markdown
 # 🛒 Kirana Shop - Spring Boot Mini Project
@@ -54,11 +54,11 @@ This project is designed to help you understand:
 ```
 
 kirana-shop/
-├── controller/      # REST API Controllers
-├── service/         # Business Logic
-├── repository/      # Data Access Layer
-├── model/           # JPA Entities
-├── dto/             # Request/Response DTOs
+├── controller/         # REST API Controllers
+├── service/            # Business Logic
+├── repository/         # Data Access Layer
+├── model/              # JPA Entities
+├── dto/                # Request/Response DTOs
 ├── KiranaShopApplication.java
 └── application.properties
 
@@ -114,7 +114,8 @@ JDBC URL: jdbc:h2:mem:testdb
 
 * `POST /customers`
 * `POST /employees`
-* `GET /customers`, `GET /employees`
+* `GET /customers`
+* `GET /employees`
 
 ---
 
@@ -146,7 +147,6 @@ This project is open-source and free to use under the [MIT License](LICENSE).
 
 ## ✍️ Author
 
-**ManixGt!** Customize it, extend it, learn from it.
-```
+**ManixGt** — Customize it, extend it, and learn from it!
+
 ---
-```
