@@ -53,7 +53,7 @@ A complete grocery store management system built with Spring Boot and PostgreSQL
 - `src/main/java/com/kiranastore/controller/` - REST APIs
 - `src/main/java/com/kiranastore/service/` - Business logic
 - `src/main/java/com/kiranastore/repository/` - Data access
-- `src/main/java/com/kiranastore/entity/` - JPA entities
+- `src/main/java/com/kiranastore/model/` - JPA entities
 - `src/main/java/com/kiranastore/dto/` - Data Transfer Objects
 - `src/main/java/com/kiranastore/config/` - Configuration
 
@@ -67,7 +67,7 @@ kiranaStore/
 │ ├── controller/ # REST APIs
 │ ├── service/ # Business logic
 │ ├── repository/ # Data access
-│ ├── entity/ # JPA entities
+│ ├── model/ # JPA entities
 │ ├── dto/ # Data Transfer Objects
 │ └── config/ # Configuration
 ├── src/main/resources/
@@ -175,9 +175,7 @@ POST /api/products
   "supplierId": 1
 }
 ```
-
 ---
-
 ## 🔧 Configuration
 
 ### application.properties
